@@ -15,6 +15,12 @@ const DomoSchema = new mongoose.Schema({
     min: 0,
     required: true,
   },
+  level: { // New attribute
+    type: Number,
+    min: 1,
+    required: true,
+    default: 1,
+  },
   owner: {
     type: mongoose.Schema.ObjectId,
     required: true,
@@ -29,6 +35,7 @@ const DomoSchema = new mongoose.Schema({
 DomoSchema.statics.toAPI = (doc) => ({
   name: doc.name,
   age: doc.age,
+  level: doc.level, // Include level in the API response
 });
 
 const DomoModel = mongoose.model('Domo', DomoSchema);
